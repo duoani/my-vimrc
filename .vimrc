@@ -174,7 +174,6 @@ call vundle#end()            " required
     color solarized                                " Load a colorscheme }
     set listchars=tab:>-,trail:-
     set list
-    
 
     autocmd InsertLeave * set nocursorline  " 用浅色高亮当前行  
     autocmd InsertEnter * set cursorline    " 用浅色高亮当前行  
@@ -187,6 +186,10 @@ call vundle#end()            " required
     nnoremap <silent> <leader>sv :so ~/.vimrc<CR> " 按;sv重载配置文件
     inoremap <silent> <S-CR> <Esc>o
 
+    " 系统剪切板
+    " On OSX
+    vmap <C-c> :w !pbcopy<CR><CR>
+    nmap <C-v> :r !pbpaste<CR><CR>
     " 窗口操作
     nmap    w=  :resize +10<CR>
     nmap    w-  :resize -10<CR>
