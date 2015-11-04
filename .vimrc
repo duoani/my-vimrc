@@ -191,8 +191,8 @@ call vundle#end()            " required
     vmap <C-c> :w !pbcopy<CR><CR>
     nmap <C-v> :r !pbpaste<CR><CR>
     " 窗口操作
-    nmap    w=  :resize +10<CR>
-    nmap    w-  :resize -10<CR>
-    nmap    w,  :vertical resize -10<CR>
-    nmap    w.  :vertical resize +10<CR>
+    nmap w= :resize +10<CR>
+    nmap w- :resize -10<CR>
+    nmap w, :vertical resize -10<CR>
+    nmap w. :vertical resize +10<CR>
 " }
