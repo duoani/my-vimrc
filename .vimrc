@@ -33,6 +33,7 @@ call vundle#begin()
 " General {
     " ** vim-markdown ** (https://github.com/plasticboy/vim-markdown.git)
     Plugin 'godlygeek/tabular'
+    Plugin 'jiangmiao/auto-pairs'
     Plugin 'plasticboy/vim-markdown'
     let g:vim_markdown_folding_disabled=0
 
@@ -62,6 +63,8 @@ call vundle#begin()
 
     " ** ctrlp.vim ** (https://github.com/kien/ctrlp.vim.git)
     Plugin 'kien/ctrlp.vim'
+         set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.png,*.jpg,*.jpeg,*.gif  " ctrap
+         let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'                " MacOSX/Linux
 
     " ** vim.airline ** (https://github.com/bling/vim-airline.git)
     Plugin 'bling/vim-airline'
@@ -120,6 +123,10 @@ call vundle#begin()
         let Tlist_Close_On_Select = 1         " 选择某个tag后自动关闭taglist窗口
         let g:tlist_javascript_settings = 'javascript;s:string;a:array;o:object;f:function' " 支持JS语法
         map <leader>tt :TlistToggle<CR>
+
+    " ** ervandew/supertab **
+    Plugin 'ervandew/supertab'
+        let g:SuperTabDefaultCompletionType = "context"
 " }
 
 " Javascript {
@@ -140,6 +147,11 @@ call vundle#begin()
     Plugin 'ternjs/tern_for_vim'
 " }
 
+" PHP {
+    " ** spf13/PIV **
+    Plugin 'spf13/PIV'
+        let g:DisableAutoPHPFolding = 1
+" }
 " HTML {
     " ** emmet-vim ** (https://github.com/mattn/emmet-vim.git)
     Plugin 'mattn/emmet-vim'
@@ -161,18 +173,18 @@ call vundle#end()            " required
 " =========== Vendle Plugin Block ===========
 
 " Vim UI {
-    syntax on                                   " show syntax color
+    syntax on                                      " show syntax color
     set number                                     " show line number
     set foldenable
     highlight clear SignColumn                     " SignColumn should match background
-    set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
     set hlsearch                                   " 搜索逐字符高亮
     set showcmd                                    " 输入的命令显示出来，看的清楚些
     set background=dark
     set t_Co=256
     set laststatus=2                               " 总是显示状态行
     color solarized                                " Load a colorscheme }
-    set listchars=tab:>-,trail:-
+    "set listchars=trail:•         " Highlight problematic whitespace
+    set listchars=tab:\|\ ,trail:•,extends:>,precedes:<
     set list
 
     autocmd InsertLeave * set nocursorline  " 用浅色高亮当前行  
