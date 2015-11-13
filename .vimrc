@@ -1,6 +1,36 @@
+" Environment {
 
+    " Identify platform {
+        silent function! OSX()
+            return has('macunix')
+        endfunction
+        silent function! LINUX()
+            return has('unix') && !has('macunix') && !has('win32unix')
+        endfunction
+        silent function! WINDOWS()
+            return  (has('win16') || has('win32') || has('win64'))
+        endfunction
+    " }
+
+    " Basics {
+        set nocompatible        " Must be first line
+        if !WINDOWS()
+            set shell=/bin/sh
+        endif
+    " }
+
+    " Windows Compatible {
+        " On Windows, also use '.vim' instead of 'vimfiles'; this makes synchronization
+        " across (heterogeneous) systems easier.
+        if WINDOWS()
+          set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+        endif
+    " }
+" }
+
+
+"set nocompatible         " be iMproved, required
 set modelines=0          " CVE-2007-2438
-set nocompatible         " be iMproved, required
 set backspace=2          " more powerful backspacing
 set autoindent           " 自动缩进
 set expandtab            " 将tab转换为空格
@@ -12,7 +42,7 @@ set history=1000
 set mouse=a
 set selection=exclusive
 set selectmode=mouse,key
-set clipboard+=unnamed   " 共享剪贴板
+set clipboard+=unnamed   " 共享剪贴板 需要xterm_clipboard支持
 set autoread             " 设置当文件被改动时自动载入
 set autowrite            " 自动保存
 set helplang=cn          " 语言设置
@@ -199,9 +229,16 @@ call vundle#end()            " required
     inoremap <silent> <S-CR> <Esc>o
 
     " 系统剪切板
-    " On OSX
-    vmap <C-c> :w !pbcopy<CR><CR>
-    nmap <C-v> :r !pbpaste<CR><CR>
+    if LINUX()
+        vmap <C-c> "+y
+        nmap <C-v> "+p
+
+    elseif OSX()
+        vmap <C-c> :w !pbcopy<CR><CR>
+        nmap <C-v> :r !pbpaste<CR><CR>
+
+    endif
+
     " 窗口操作
     nmap w= :resize +10<CR>
     nmap w- :resize -10<CR>
