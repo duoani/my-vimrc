@@ -143,7 +143,11 @@
         " ** ctrlp.vim ** (https://github.com/kien/ctrlp.vim.git)
         Plugin 'kien/ctrlp.vim'
              set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.png,*.jpg,*.jpeg,*.gif  " ctrap
-             let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'                " MacOSX/Linux
+             "let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'                " MacOSX/Linux
+             let g:ctrlp_custom_ignore = {
+                \ 'dir':  '\v[\/]\.(git|hg|svn|idea)$|node_modules$',
+                \ 'file': '\v\.(exe|so|dll|log|jpg|jpeg|png|gif|json)$',
+                \ }
 
         " ** vim.airline ** (https://github.com/bling/vim-airline.git)
         Plugin 'bling/vim-airline'
@@ -204,8 +208,8 @@
             map <leader>tt :TlistToggle<CR>
 
         " ** ervandew/supertab **
-        Plugin 'ervandew/supertab'
-            let g:SuperTabDefaultCompletionType = "context"
+        "Plugin 'ervandew/supertab'
+        "    let g:SuperTabDefaultCompletionType = "context"
     " }
 
     " Javascript {
