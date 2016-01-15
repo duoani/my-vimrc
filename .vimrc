@@ -247,6 +247,10 @@
         Plugin 'Chiel92/vim-autoformat'
             nnoremap <F3> :Autoformat<CR> " map F4 to Jsbeautify
     " }
+    " Java {
+        Plugin 'artur-shaik/vim-javacomplete2' 
+            autocmd FileType java setlocal omnifunc=javacomplete#Complete
+    " }
     "    ============ My plugins end =============
 
     " All of your Plugins must be added before the following line
